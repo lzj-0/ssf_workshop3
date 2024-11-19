@@ -1,0 +1,4 @@
+name=John
+email=John123@gmail.com
+phone=83950472
+dateOfBirth=2005-06-07

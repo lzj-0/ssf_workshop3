@@ -1,0 +1,4 @@
+name=Tom
+email=tommy@gmail.com
+phone=876548543
+dateOfBirth=1993-04-08

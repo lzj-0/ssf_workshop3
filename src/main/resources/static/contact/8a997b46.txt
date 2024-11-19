@@ -1,0 +1,4 @@
+name=Toby
+email=Toby22@gmail.com
+phone=2347997246
+dateOfBirth=1989-04-17

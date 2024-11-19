@@ -1,0 +1,4 @@
+name=Janet
+email=janet974@gmail.com
+phone=8765434578
+dateOfBirth=1996-06-12
