@@ -18,22 +18,22 @@ public class Workshop3Application {
 	public static void main(String[] args) {
 
 
-		ApplicationArguments cliOpts = new DefaultApplicationArguments(args);
+		// ApplicationArguments cliOpts = new DefaultApplicationArguments(args);
 
-		if (!cliOpts.containsOption("dataDir")) {
-			System.err.println("Input --dataDir=<dir>");
-			System.exit(-1);
-		}
+		// if (!cliOpts.containsOption("dataDir")) {
+		// 	System.err.println("Input --dataDir=<dir>");
+		// 	System.exit(-1);
+		// }
 
 		
-		String dir = cliOpts.getOptionValues("dataDir").get(0);
-		File directory = new File(dir);
+		// String dir = cliOpts.getOptionValues("dataDir").get(0);
+		// File directory = new File(dir);
 
-		if (!directory.exists()) {
-			directory.mkdir();
-		}
+		// if (!directory.exists()) {
+		// 	directory.mkdir();
+		// }
 
-		PATH = dir;
+		// PATH = dir;
 
 		SpringApplication.run(Workshop3Application.class, args);
 		

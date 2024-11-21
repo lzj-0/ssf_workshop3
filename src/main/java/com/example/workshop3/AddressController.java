@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 public class AddressController {
 
     @Autowired
-    private Contacts contacts;
+    private ContactsRedis contactsRedis;
 
     @GetMapping("/contact")
     public String form(Model model) {
@@ -50,8 +50,7 @@ public class AddressController {
         Random random = new Random();
         
         String id = Integer.toHexString(random.nextInt()).substring(0, 8);
-        contacts.setPath(Workshop3Application.PATH);
-        contacts.createFile(contact, id);
+        contactsRedis.addContact(contact, id);
 
         model.addAttribute("contact", contact);
 
@@ -60,8 +59,7 @@ public class AddressController {
 
     @GetMapping("/contact/{id}")
     public String getContactbyId(@PathVariable String id, Model model) throws IOException {
-        contacts.setPath(Workshop3Application.PATH);
-        Contact contact = contacts.getFile(id);
+        Contact contact = contactsRedis.getContactById(id);
 
         if (contact == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "not found");
@@ -74,8 +72,7 @@ public class AddressController {
 
     @GetMapping("/contacts")
     public String allContacts(Model model) throws IOException {
-        contacts.setPath(Workshop3Application.PATH);
-        Map<String, String> contactMap = contacts.getAllContacts();
+        Map<String, String> contactMap = contactsRedis.getAllContacts();
         model.addAttribute("contactmap", contactMap);
         return "contacts";
     }
