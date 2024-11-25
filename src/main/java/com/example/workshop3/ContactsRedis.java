@@ -1,5 +1,6 @@
 package com.example.workshop3;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -12,14 +13,16 @@ import org.springframework.stereotype.Repository;
 public class ContactsRedis {
 
     @Autowired
-    public RedisTemplate<String, Contact> template;
+    public RedisTemplate<String, String> template;
 
     public void addContact(Contact contact, String id) {
-        template.opsForValue().set(id, contact);
+        template.opsForValue().set(id, contact.toString());
     }
 
     public Contact getContactById(String id) {
-        return template.opsForValue().get(id);
+        String contactString = template.opsForValue().get(id);
+        String[] input = contactString.split(", ");
+        return new Contact(input[0], input[1], input[2], LocalDate.parse(input[3]));
     }
 
     public Map<String, String> getAllContacts()  {
@@ -27,7 +30,9 @@ public class ContactsRedis {
         Map<String, String> contactMap = new HashMap<>();
 
         for (String key: keys) {
-            Contact contact = template.opsForValue().get(key);
+            String contactString = template.opsForValue().get(key);
+            String[] input = contactString.split(", ");
+            Contact contact = new Contact(input[0], input[1], input[2], LocalDate.parse(input[3]));
             contactMap.put(key, contact.getName());
         }
         return contactMap;

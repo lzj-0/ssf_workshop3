@@ -26,6 +26,18 @@ public class Contact {
     @NotNull(message="Date of Birth required")
     private LocalDate dateOfBirth;
 
+    public Contact() {}
+
+    public Contact(
+            String name,
+            String email,
+            String phone,
+           LocalDate dateOfBirth) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
+    }
     public String getName() {
         return name;
     }
@@ -53,7 +65,7 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "name=%s\nemail=%s\nphone=%s\ndateOfBirth=%s".formatted(this.name, this.email, this.phone, this.dateOfBirth.toString());
+        return "%s, %s, %s, %s".formatted(this.name, this.email, this.phone, this.dateOfBirth.toString());
     }
 
     
